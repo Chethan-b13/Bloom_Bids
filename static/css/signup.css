@@ -1,0 +1,81 @@
+:root {
+  --pink: #e84393;
+}
+
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  outline: none;
+  text-decoration: none;
+  border: none;
+  text-transform: capitalize;
+  transition: 0.2s linear;
+}
+
+.a_h1 {
+  font-size: 20px;
+  font-weight: 50px;
+  color: #333;
+  padding: 1rem 2rem;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+.container {
+  background: url(./images/home-bg.jpg);
+  min-height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: left;
+}
+.a_h1 span {
+  color: var(--pink);
+}
+.row tr td {
+  letter-spacing: 0.5px;
+  font-size: 14px;
+  color: #333;
+  width: 200px;
+  line-height: 25px;
+  padding: 10px;
+  border-collapse: collapse;
+}
+.row tr td input {
+  border-style: hidden hidden hidden hidden;
+  border-bottom: 1px solid var(--pink);
+}
+
+button {
+  background-color: #333;
+  font-size: 1rem;
+  border-radius: 5rem;
+  color: #fff;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  border: none;
+}
+button:hover {
+  background-color: var(--pink);
+}
+.box {
+  border-radius: 2rem;
+  padding: 0.3rem;
+}
+.pasdis {
+  color: #333;
+}
+.login p {
+  color: #333;
+  text-transform: none;
+}
+.login a {
+  color: var(--pink);
+  font-size: 1.1rem;
+}
+.login a:hover {
+  text-decoration: underline;
+}

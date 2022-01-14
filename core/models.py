@@ -10,11 +10,27 @@ label_choices = (
 )
 
 
+# class UserInfo(models.Model):
+#     """Model definition for UserInfo."""
+
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     email = models.EmailField(max_length=254)
+#     Phone_number = models.models.CharField(max_length=12)
+
+#     class Meta:
+#         """Meta definition for UserInfo."""
+#         verbose_name_plural = 'UserInfos'
+
+#     def __str__(self):
+#         """Unicode representation of UserInfo."""
+#         return self.user.username
+
+
 class Category(models.Model):
     category_name = models.CharField(max_length=50)
 
     class Meta:
-        verbose_name_plural = ("s")
+        verbose_name_plural = "categories"
 
     def __str__(self):
         return self.category_name
