@@ -7,6 +7,7 @@ from .models import Item, Order, CartItem
 
 class HomePage(ListView):
     model = Item
+    context_object_name = 'Flowers'
     template_name = "index.html"
 
 

@@ -6,8 +6,8 @@
 <!-- home section starts -->
 <section class="home" id="home" style="background-image:url('{% static 'images/home-bg.jpg' %}');">
     <div class="contents">
-      <h3>fresh flowers</h3>
-      <span>natural & beautiful flowers</span>
+      <h3>Fresh Flowers</h3>
+      <span>Natural & Beautiful Flowers</span>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime
         cumque necessitatibus vitae pariatur. Non eos provident quae rerum ex
@@ -83,10 +83,12 @@
   <section class="products" id="products">
     <h1 class="heading">latest <span>products</span></h1>
     <div class="box-container">
+      
+      {% for Flower in Flowers %}
       <div class="box">
         <span class="discount">-10%</span>
         <div class="image">
-          <img src={% static 'images/img-1.jpg' %} alt="" />
+          <img src=/media/{{Flower.item_image}} alt="{{Flower.flower_name}}"/>
           <div class="icons">
             <a href="#" class="fas fa-heart"></a>
             <a href="#" class="cart-btn">add to cart</a>
@@ -94,138 +96,12 @@
           </div>
         </div>
         <div class="content">
-          <h3>folwer pot</h3>
-          <div class="price">$12.99 <span>$15.99</span></div>
+          <h3>{{Flower.flower_name}}</h3>
+          <div class="price">{{Flower.discount_price}}<span>{{Flower.price}}</span></div>
         </div>
       </div>
-
-      <div class="box">
-        <span class="discount">-15%</span>
-        <div class="image">
-          <img src={% static 'images/img-2.jpg' %} alt="" />
-          <div class="icons">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="cart-btn">add to cart</a>
-            <a href="#" class="fas fa-share"></a>
-          </div>
-        </div>
-        <div class="content">
-          <h3>folwer pot</h3>
-          <div class="price">$12.99 <span>$15.99</span></div>
-        </div>
-      </div>
-
-      <div class="box">
-        <span class="discount">-5%</span>
-        <div class="image">
-          <img src={% static 'images/img-3.jpg' %} alt="" />
-          <div class="icons">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="cart-btn">add to cart</a>
-            <a href="#" class="fas fa-share"></a>
-          </div>
-        </div>
-        <div class="content">
-          <h3>folwer pot</h3>
-          <div class="price">$12.99 <span>$15.99</span></div>
-        </div>
-      </div>
-
-      <div class="box">
-        <span class="discount">-20%</span>
-        <div class="image">
-          <img src={% static 'images/img-4.jpg' %} alt="" />
-          <div class="icons">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="cart-btn">add to cart</a>
-            <a href="#" class="fas fa-share"></a>
-          </div>
-        </div>
-        <div class="content">
-          <h3>folwer pot</h3>
-          <div class="price">$12.99 <span>$15.99</span></div>
-        </div>
-      </div>
-
-      <div class="box">
-        <span class="discount">-17%</span>
-        <div class="image">
-          <img src={% static 'images/img-5.jpg' %} alt="" />
-          <div class="icons">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="cart-btn">add to cart</a>
-            <a href="#" class="fas fa-share"></a>
-          </div>
-        </div>
-        <div class="content">
-          <h3>folwer pot</h3>
-          <div class="price">$12.99 <span>$15.99</span></div>
-        </div>
-      </div>
-
-      <div class="box">
-        <span class="discount">-3%</span>
-        <div class="image">
-          <img src={% static 'images/img-6.jpg' %} alt="" />
-          <div class="icons">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="cart-btn">add to cart</a>
-            <a href="#" class="fas fa-share"></a>
-          </div>
-        </div>
-        <div class="content">
-          <h3>folwer pot</h3>
-          <div class="price">$12.99 <span>$15.99</span></div>
-        </div>
-      </div>
-
-      <div class="box">
-        <span class="discount">-18%</span>
-        <div class="image">
-          <img src={% static 'images/img-7.jpg' %} alt="" />
-          <div class="icons">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="cart-btn">add to cart</a>
-            <a href="#" class="fas fa-share"></a>
-          </div>
-        </div>
-        <div class="content">
-          <h3>folwer pot</h3>
-          <div class="price">$12.99 <span>$15.99</span></div>
-        </div>
-      </div>
-
-      <div class="box">
-        <span class="discount">-10%</span>
-        <div class="image">
-          <img src={% static 'images/img-8.jpg' %} alt="" />
-          <div class="icons">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="cart-btn">add to cart</a>
-            <a href="#" class="fas fa-share"></a>
-          </div>
-        </div>
-        <div class="content">
-          <h3>folwer pot</h3>
-          <div class="price">$12.99 <span>$15.99</span></div>
-        </div>
-      </div>
-
-      <div class="box">
-        <span class="discount">-5%</span>
-        <div class="image">
-          <img src={% static 'images/img-9.jpg' %} alt="" />
-          <div class="icons">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="cart-btn">add to cart</a>
-            <a href="#" class="fas fa-share"></a>
-          </div>
-        </div>
-        <div class="content">
-          <h3>folwer pot</h3>
-          <div class="price">$12.99 <span>$15.99</span></div>
-        </div>
-      </div>
+      {% endfor %}
+        
     </div>
   </section>
 

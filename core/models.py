@@ -44,7 +44,7 @@ class Item(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     label = models.CharField(choices=label_choices, default="", max_length=2)
     item_image = models.ImageField(
-        upload_to="uploads/", default='/images/Default_Flower.jpg')
+        upload_to="uploads/", default='/images/no-image.jpg')
     is_auctioned = models.BooleanField(default=False)
 
     class Meta:
