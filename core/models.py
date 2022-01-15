@@ -2,6 +2,7 @@ from django.db import models
 from django.shortcuts import reverse
 from django.conf import settings
 from django.contrib.auth.models import User
+from PIL import Image
 # Create your models here.
 
 label_choices = (
@@ -50,6 +51,15 @@ class Item(models.Model):
     class Meta:
         verbose_name_plural = 'Items'
 
+    def save(self, *args, **kwargs):
+        if self.item_image:
+            super().save(*args, **kwargs)
+            img = Image.open(self.item_image.path)
+            if img.height > 300 or img.weight > 300:
+                output_size = (400, 400)
+                img.thumbnail(output_size)
+                img.save(self.item_image.path)
+
     def __str__(self):
         return self.flower_name
 
@@ -63,7 +73,7 @@ class Item(models.Model):
         return reverse("core:remove-from-cart", kwargs={'pk': self.pk})
 
 
-class CartItem(models.Model):
+class Order(models.Model):
     """Model definition for CartItem."""
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
@@ -72,28 +82,28 @@ class CartItem(models.Model):
 
     class Meta:
         """Meta definition for CartItem."""
-        verbose_name_plural = 'CartItems'
+        verbose_name_plural = 'Orders'
 
     def __str__(self):
-        """Unicode representation of CartItem."""
+        """Unicode representation of Orders."""
         return f"{self.quantity} of {self.item.flower_name}"
 
 
-class Order(models.Model):
-    """Model definition for Order."""
+class CartItem(models.Model):
+    """Model definition for CartItems."""
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    item = models.ManyToManyField(CartItem)
+    item = models.ManyToManyField(Order)
     start_date = models.DateTimeField(auto_now_add=True)
     order_date = models.DateTimeField()
     ordered = models.BooleanField(default=False)
 
     class Meta:
-        """Meta definition for Order."""
+        """Meta definition for CartItem."""
 
-        verbose_name = 'Order'
-        verbose_name_plural = 'Orders'
+        verbose_name = 'CartItem'
+        verbose_name_plural = 'CartItems'
 
     def __str__(self):
-        """Unicode representation of Order."""
+        """Unicode representation of CartItem."""
         return self.user.username
