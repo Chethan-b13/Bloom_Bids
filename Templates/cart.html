@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  
+<!-- cart items details -->
+
+<div class="small-container cart-page">
+  <h3 class="head">Shopping <span>Cart</span></h3>
+  <top>
+    <table>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+      </tr>
+      {% for cart_item in cart_items.item.all %}
+          <tr>
+            <td>
+              <div class="cart-info">
+                <img src={{cart_item.item.item_image.url}} alt="" />
+                <div class="data">
+                  <p>{{cart_item.item.flower_name}} </p>
+                  <small>{{cart_item.item.price}}$</small>
+                  <br />
+                  <a href="#">Remove</a>
+                </div>
+              </div>
+            </td>
+            <td><input type="number" value="1" /></td>
+            <td>90$</td>
+          </tr>
+      {% endfor %}
+
+    </table>
+  </top>
+  <div class="total-price">
+    <table>
+      <tr>
+        <td>Subtotal</td>
+        <td>$210</td>
+      </tr>
+      <tr>
+        <td>Tax</td>
+        <td>$20</td>
+      </tr>
+      <tr class="under">
+        <td>Total</td>
+        <td>$230</td>
+      </tr>
+    </table>
+  </div>
+  <div class="checkout">
+    <a href="#">check out</a>
+  </div>
+</div>
+<!-- end of cart items details  -->
+
+    {% endblock content %}

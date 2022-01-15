@@ -1,4 +1,5 @@
 {% load static %}
+{% load cart_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +15,7 @@
     />
     <!-- custom css file link -->
     <link rel="stylesheet" href= {% static 'css/style.css' %}/>
+    <link rel="stylesheet" href={% static 'css/cart.css' %}/>
   </head>
   <body>
     <div>
@@ -23,7 +25,7 @@
       <label for="toggler" class="fas fa-bars"></label>
       <a href="#" class="logo">flower<span>.</span></a>
       <nav class="navbar">
-        <a href="#home">home</a>
+        <a href={% url 'core:Home-Page' %}>home</a>
         <a href="#about">about</a>
         <a href="#products">products</a>
         <a href="#review">review</a>
@@ -31,9 +33,11 @@
       </nav>
       <div class="icons">
         <a href="#" class="fas fa-heart"></a>
-        <a href="#" class="fas fa-shopping-cart"
-          ><span style=" color: #f496a9; font-size: large;">0</span></a
-        >
+      
+        <a href="{% url 'core:order-summary' %}" class="fas fa-shopping-cart"
+        ><span style=" color: #f496a9; font-size: large;">{{request.user | cart_item_count }}</span></a>
+          
+        
         <a href="signup.html" class="fas fa-user"></a>
       </div>
     </header>

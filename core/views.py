@@ -1,8 +1,12 @@
 from time import timezone
+from urllib import request
+from webbrowser import get
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
-from typing import Generic
-from django.views.generic import ListView, DetailView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ObjectDoesNotExist
+from django.views.generic import ListView, DetailView, View
 from .models import Item, Order, CartItem
 # Create your views here.
 
@@ -16,6 +20,20 @@ class HomePage(ListView):
 class ProductDetailView(DetailView):
     model = Item
     template_name = "product.html"
+
+
+class OrderSummary(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+
+        try:
+            cart_items = CartItem.objects.get(
+                user=self.request.user, ordered=False)
+            context = {'cart_items': cart_items}
+            print(context)
+            return render(self.request, 'cart.html', context)
+        except ObjectDoesNotExist:
+            messages.error(self.request, "No Products in the cart")
+            return redirect('/')
 
 
 def add_to_cart(request, pk):
