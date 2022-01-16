@@ -43,7 +43,8 @@ class Item(models.Model):
     discount_price = models.FloatField(blank=True, null=True)
     description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    label = models.CharField(choices=label_choices, default="", max_length=2)
+    label = models.CharField(choices=label_choices,
+                             default="", max_length=2, blank=True, null=True)
     item_image = models.ImageField(
         upload_to="uploads/", default='/images/no-image.jpg')
     is_auctioned = models.BooleanField(default=False)
@@ -55,7 +56,7 @@ class Item(models.Model):
         if self.item_image:
             super().save(*args, **kwargs)
             img = Image.open(self.item_image.path)
-            if img.height > 300 or img.weight > 300:
+            if img.height > 300 or img.width > 300:
                 output_size = (400, 400)
                 img.thumbnail(output_size)
                 img.save(self.item_image.path)
@@ -64,7 +65,7 @@ class Item(models.Model):
         return self.flower_name
 
     def get_absolute_url(self):
-        return reverse("core:products", kwargs={"pk": self.pk})
+        return reverse("core:Detail-view", kwargs={"pk": self.pk})
 
     def get_add_to_cart_url(self):
         return reverse("core:add-to-cart", kwargs={'pk': self.pk})
@@ -88,6 +89,20 @@ class Order(models.Model):
         """Unicode representation of Orders."""
         return f"{self.quantity} of {self.item.flower_name}"
 
+    def get_total_item_price(self):
+        return self.quantity * self.item.price
+
+    def get_discount_item_price(self):
+        return self.quantity * self.item.discount_price
+
+    def get_amount_saved(self):
+        return self.get_total_item_price() - self.get_discount_item_price()
+
+    def get_final_price(self):
+        if self.item.discount_price:
+            return self.get_discount_item_price()
+        return self.get_total_item_price()
+
 
 class CartItem(models.Model):
     """Model definition for CartItems."""
@@ -107,3 +122,21 @@ class CartItem(models.Model):
     def __str__(self):
         """Unicode representation of CartItem."""
         return self.user.username
+
+    def get_total_price(self):
+        total = 0
+        for order_item in self.item.all():
+            total += order_item.get_total_item_price()
+        return total
+
+    def get_amount_saved(self):
+        total = 0
+        for order_item in self.item.all():
+            total += order_item.get_amount_saved()
+        return total
+
+    def price_afted_saved(self):
+        total = 0
+        for order_item in self.item.all():
+            total += order_item.get_final_price()
+        return total

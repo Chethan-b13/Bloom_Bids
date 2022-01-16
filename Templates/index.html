@@ -86,12 +86,16 @@
       
       {% for Flower in Flowers %}
       <div class="box">
-        <span class="discount">-10%</span>
+        
+        {% if Flower.label %}
+          <span class="discount">{{Flower.get_label_display}}</span>
+        {% endif %}
+          
         <div class="image">
-          <img src=/media/{{Flower.item_image}} alt="{{Flower.flower_name}}"/>
+          <a href="{{Flower.get_absolute_url}}"><img src=/media/{{Flower.item_image}} alt="{{Flower.flower_name}}"/></a>
           <div class="icons">
             <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="cart-btn">add to cart</a>
+            <a href="{{Flower.get_add_to_cart_url}}" class="cart-btn">add to cart</a>
             <a href="#" class="fas fa-share"></a>
           </div>
         </div>

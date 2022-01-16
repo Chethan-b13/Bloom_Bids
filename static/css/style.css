@@ -232,14 +232,13 @@ header .fa-bars {
 
 .products .box-container .box .discount {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
-  font-size: 2rem;
-  padding: 0.7rem 1rem;
-  color: var(--pink);
-  background: rgba(255, 51, 153, 0.05);
+  padding: 0.8rem 2.8rem 7px 0.8rem;
+  background: #ffeb49;
+  color: rgb(0, 0, 0);
   z-index: 1;
   border-radius: 0.5rem;
+  clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+  font: small-caps bold 12px/10px sans-serif;
 }
 .products .box-container .box .image {
   position: relative;

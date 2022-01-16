@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  
+  
+    <!-- about section starts -->
+    <section class="about" id="about">
+      <h1 class="heading">Product<span> Description</span></h1>
+      <div class="row">
+        <div class="video-container">
+          <img src="{{Flower.item_image.url}}" alt="" />
+        </div>
+        <div class="content">
+          <h3>{{Flower.flower_name}}</h3>
+          <h3>${{Flower.discount_price}}</h3>
+          <span class="detail-price ">${{Flower.price}}</span>
+          <h3 class="descsize"><span>Description</span></h3>
+          <p style="margin-bottom: 1rem;">
+            {{Flower.description}}
+          </p>
+          <div class="attributes">
+            <h4>Key Attributes:</h4>
+            <p>No. of stems: 8</p>
+            <p>color: pink</p>
+
+            <p>Type of Flowers: {{Flower.category}}</p>
+          </div>
+          <a href="{{Flower.get_add_to_cart_url}}" class="btn">Add to Cart</a>
+        </div>
+      </div>
+    </section>
+    <!-- about section ends -->
+
+    {% endblock content %}
+

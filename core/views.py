@@ -19,7 +19,8 @@ class HomePage(ListView):
 
 class ProductDetailView(DetailView):
     model = Item
-    template_name = "product.html"
+    context_object_name = 'Flower'
+    template_name = "Product_detail.html"
 
 
 class OrderSummary(LoginRequiredMixin, View):
@@ -29,7 +30,6 @@ class OrderSummary(LoginRequiredMixin, View):
             cart_items = CartItem.objects.get(
                 user=self.request.user, ordered=False)
             context = {'cart_items': cart_items}
-            print(context)
             return render(self.request, 'cart.html', context)
         except ObjectDoesNotExist:
             messages.error(self.request, "No Products in the cart")
@@ -54,11 +54,11 @@ def add_to_cart(request, pk):
             ordered_item.quantity += 1
             ordered_item.save()
             messages.info(request, "Added Quantity Item")
-            return redirect("core:Detail-view", pk=pk)
+            return redirect("core:order-summary")
         else:
             cart_item.item.add(ordered_item)
             messages.info(request, "Added Item to your cart")
-            return redirect("core:Detail-view", pk=pk)
+            return redirect("core:order-summary")
 
     else:
         ordered_date = timezone.now()
@@ -66,7 +66,7 @@ def add_to_cart(request, pk):
             user=request.user, order_date=ordered_date)
         cart_item.item.add(ordered_item)
         messages.info(request, "Added Item to your cart")
-        return redirect("core:Detail-view", pk=pk)
+        return redirect("core:order-summary", pk=pk)
 
 
 def remove_from_cart(request, pk):
@@ -81,13 +81,15 @@ def remove_from_cart(request, pk):
             order_item = Order.objects.filter(user=request.user,
                                               item=item,
                                               ordered=False)[0]
+            print(order_item)
             order_item.delete()
             messages.info(request, "Item \"" +
                           order_item.item.flower_name+"\" remove from your cart")
-            return redirect("core:Detail-view", pk=pk)
+            print("removed item")
+            return redirect("core:order-summary")
         else:
             messages.info(request, "This Item not in your cart")
-            return redirect("core:Detail-view", pk=pk)
+            return redirect("core:order-summary")
     else:
         messages.info(request, "You do not have an Order")
-        return redirect("core:Detail-view", pk=pk)
+        return redirect("core:order-summary")
