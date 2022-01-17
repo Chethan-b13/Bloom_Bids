@@ -1,7 +1,6 @@
 :root {
   --pink: #e84393;
 }
-
 * {
   margin: 0%;
   padding: 0%;
@@ -14,27 +13,35 @@
   transition: 0.2s linear;
 }
 
-.a_h1 {
-  font-size: 20px;
-  font-weight: 50px;
-  color: #333;
-  padding: 1rem 2rem;
-  text-align: center;
-  background-color: #fff;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  overflow-x: hidden;
 }
 .container {
-  background: url(./images/home-bg.jpg);
-  min-height: 100vh;
   width: 100%;
-  background-size: cover;
-  background-position: left;
+  height: 100vh;
 }
-.a_h1 span {
+.signupheading {
+  padding-top: 80px;
+  text-align: center;
+}
+.signupheading h3 {
+  font-size: 5rem;
+  color: #444;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+.signupheading h3 span {
   color: var(--pink);
 }
-.row tr td {
+
+td label {
+  font-size: 17px;
+}
+
+tr td {
   letter-spacing: 0.5px;
   font-size: 14px;
   color: #333;
@@ -43,39 +50,26 @@
   padding: 10px;
   border-collapse: collapse;
 }
-.row tr td input {
+tr td input {
   border-style: hidden hidden hidden hidden;
   border-bottom: 1px solid var(--pink);
-}
-
-button {
-  background-color: #333;
-  font-size: 1rem;
-  border-radius: 5rem;
-  color: #fff;
-  padding: 0.5rem 1.5rem;
-  cursor: pointer;
-  margin-top: 1rem;
-  border: none;
-}
-button:hover {
-  background-color: var(--pink);
 }
 .box {
   border-radius: 2rem;
   padding: 0.3rem;
 }
-.pasdis {
-  color: #333;
-}
+
 .login p {
   color: #333;
   text-transform: none;
+  font-size: 1.5rem;
 }
 .login a {
   color: var(--pink);
-  font-size: 1.1rem;
 }
 .login a:hover {
   text-decoration: underline;
+}
+.btn {
+  margin-left: 1rem;
 }

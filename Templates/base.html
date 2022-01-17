@@ -15,8 +15,14 @@
     />
     <!-- custom css file link -->
     <link rel="stylesheet" href= {% static 'css/style.css' %}/>
-    <link rel="stylesheet" href={% static 'css/cart.css' %}/>
-    <link rel="stylesheet" href={% static 'css/detail.css' %}/>
+    {% block csslink %}
+
+    
+      
+    {% endblock csslink %}
+      
+    
+
 
   </head>
   <body>
