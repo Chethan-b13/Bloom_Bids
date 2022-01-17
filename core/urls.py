@@ -14,5 +14,7 @@ urlpatterns = [
     ),
     path('order-summary/', OrderSummary.as_view(), name='order-summary'),
     path('add-to-cart/<int:pk>', add_to_cart, name="add-to-cart"),
-    path('remove-from-cart/<int:pk>', remove_from_cart, name="remove-from-cart")
+    path('remove-from-cart/<int:pk>', remove_from_cart, name="remove-from-cart"),
+    path("reduce_quantity_item/<int:pk>",
+         remove_single_item_from_cart, name="reduce-quantity-item")
 ]

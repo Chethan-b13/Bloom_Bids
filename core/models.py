@@ -73,6 +73,9 @@ class Item(models.Model):
     def get_remove_from_cart_url(self):
         return reverse("core:remove-from-cart", kwargs={'pk': self.pk})
 
+    def get_reduce_quantity_item_url(self):
+        return reverse("core:reduce-quantity-item", kwargs={'pk': self.pk})
+
 
 class Order(models.Model):
     """Model definition for CartItem."""

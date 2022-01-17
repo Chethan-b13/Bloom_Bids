@@ -17,7 +17,7 @@ class HomePage(ListView):
     template_name = "index.html"
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Item
     context_object_name = 'Flower'
     template_name = "Product_detail.html"
@@ -32,10 +32,11 @@ class OrderSummary(LoginRequiredMixin, View):
             context = {'cart_items': cart_items}
             return render(self.request, 'cart.html', context)
         except ObjectDoesNotExist:
-            messages.error(self.request, "No Products in the cart")
+            messages.success(self.request, "No Products in the cart")
             return redirect('/')
 
 
+@login_required
 def add_to_cart(request, pk):
     item = get_object_or_404(Item, pk=pk)
     ordered_item, created = Order.objects.get_or_create(
@@ -53,11 +54,11 @@ def add_to_cart(request, pk):
         if cart_item.item.filter(item__pk=item.pk).exists():
             ordered_item.quantity += 1
             ordered_item.save()
-            messages.info(request, "Added Quantity Item")
+            messages.success(request, "Added Quantity Item")
             return redirect("core:order-summary")
         else:
             cart_item.item.add(ordered_item)
-            messages.info(request, "Added Item to your cart")
+            messages.success(request, "Added Item to your cart")
             return redirect("core:order-summary")
 
     else:
@@ -65,10 +66,11 @@ def add_to_cart(request, pk):
         cart_item = CartItem.objects.create(
             user=request.user, order_date=ordered_date)
         cart_item.item.add(ordered_item)
-        messages.info(request, "Added Item to your cart")
+        messages.success(request, "Added Item to your cart")
         return redirect("core:order-summary", pk=pk)
 
 
+@login_required
 def remove_from_cart(request, pk):
     item = get_object_or_404(Item, pk=pk)
     user_cartitems = CartItem.objects.filter(user=request.user,
@@ -81,15 +83,42 @@ def remove_from_cart(request, pk):
             order_item = Order.objects.filter(user=request.user,
                                               item=item,
                                               ordered=False)[0]
-            print(order_item)
             order_item.delete()
-            messages.info(request, "Item \"" +
-                          order_item.item.flower_name+"\" remove from your cart")
-            print("removed item")
+            messages.success(request, "Item \"" +
+                             order_item.item.flower_name+"\" removed from your cart")
             return redirect("core:order-summary")
         else:
-            messages.info(request, "This Item not in your cart")
+            messages.success(request, "This Item not in your cart")
             return redirect("core:order-summary")
     else:
-        messages.info(request, "You do not have an Order")
+        messages.success(request, "You do not have an Order")
+        return redirect("core:order-summary")
+
+
+@login_required
+def remove_single_item_from_cart(request, pk):
+    item = get_object_or_404(Item, pk=pk)
+    user_cartitems = CartItem.objects.filter(user=request.user,
+                                             ordered=False
+                                             )
+    if user_cartitems.exists():
+        cart_items = user_cartitems[0]
+
+        if cart_items.item.filter(item__pk=item.pk).exists():
+            order_item = Order.objects.filter(user=request.user,
+                                              item=item,
+                                              ordered=False)[0]
+            if order_item.quantity > 1:
+                order_item.quantity -= 1
+                order_item.save()
+            else:
+                order_item.delete()
+            messages.success(request, "Cart Updated")
+            return redirect("core:order-summary")
+
+        else:
+            messages.success(request, "This Item is not in your cart")
+            return redirect("core:order-summary")
+    else:
+        messages.success(request, "You do not have an Order")
         return redirect("core:order-summary")

@@ -17,7 +17,7 @@ top table {
   border-collapse: collapse;
 }
 table tr {
-  border-bottom: 1px solid #666;
+  border-bottom: 2px solid #939393;
 }
 .cart-info {
   display: flex;
@@ -70,7 +70,7 @@ td img {
 }
 .total-price table {
   width: 100%;
-  max-width: 350px;
+  max-width: 100%;
 }
 td:last-child {
   text-align: right;
@@ -79,12 +79,22 @@ th:last-child {
   text-align: right;
 }
 .under td {
-  border-top: 3px solid #666;
-  border-bottom: 3px solid #666;
+  /* border-top: 2px solid #939393; */
+  border-bottom: 2px solid #939393;
 }
+
+#plusorminus {
+  font-size: 2rem;
+}
+
+#plusorminus:hover {
+  font-size: 2.5rem;
+  color: #000000;
+}
+
 .checkout a {
   display: inline-block;
-  background-color: #333;
+  background-color: var(--pink);
   font-size: 1.7rem;
   /* border-radius: 2rem; */
   color: #fff;
@@ -95,9 +105,11 @@ th:last-child {
 }
 .checkout {
   text-align: right;
+  /* transition: 0.3s; */
 }
 .checkout:hover a {
-  background-color: var(--pink);
+  font-size: 1.9rem;
+  transition-delay: 0.1s;
 }
 @media only screen and (max-width: 600px) {
   .cart-info p {

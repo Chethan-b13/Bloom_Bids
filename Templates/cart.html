@@ -6,6 +6,20 @@
 <!-- cart items details -->
 
 <div class="small-container cart-page">
+
+  <!-- Printing alert messages -->
+  {% if messages %}
+  {% for message in messages %}
+      <div class={{message.tags}} id="messages">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <h3>{{message}}</h3>
+      </div> 
+  {% endfor %}
+{% endif %}
+<!-- end of messages -->
+
+
+{% if cart_items.item.all %}
   <h3 class="head">Shopping <span>Cart</span></h3>
   <top>
     <table>
@@ -21,14 +35,21 @@
                 <img src={{cart_item.item.item_image.url}} alt="" />
                 <div class="data">
                   <p>{{cart_item.item.flower_name}}</p>
-                  <small>{{cart_item.item.discount_price}}$</small>
+                  <small>&#8377;{{cart_item.item.discount_price}}</small>
                   <br />
                   <a href="{{cart_item.item.get_remove_from_cart_url}}">Remove</a>
                 </div>
               </div>
             </td>
-            <td><input type="number" value={{cart_item.quantity}} /></td>
-            <td>{{cart_item.get_discount_item_price}}$</td>
+            <!-- <td><input type="number" value={{cart_item.quantity}} min="1" /><span>&#43;</span> </td> -->
+            <td style="font-size: 2rem;"> 
+              <a href="{{ cart_item.item.get_reduce_quantity_item_url }}"><span id=plusorminus >&#8722;</span></a>
+              {{cart_item.quantity}}
+              <a href="{{cart_item.item.get_add_to_cart_url}}"><span id=plusorminus >&#43;</span></a>
+            </td>
+            
+
+            <td>&#8377;{{cart_item.get_discount_item_price}}</td> 
           </tr>
       {% endfor %}
 
@@ -38,25 +59,38 @@
     <table>
       <tr>
         <td>Amount</td>
-        <td>${{cart_items.get_total_price }}</td>
+        <td>&#8377;{{cart_items.get_total_price }}</td>
       </tr>
       <tr>
         <td>Amount saved</td>
-        <td>-${{cart_items.get_amount_saved}}</td>
+        <td>-&#8377;{{cart_items.get_amount_saved}}</td>
       </tr>
       <tr class="under">
         <td>Total</td>
-        <td>${{cart_items.price_afted_saved}}</td>
+        <td>&#8377;{{cart_items.price_afted_saved}}</td>
       </tr>
     </table>
   </div>
-  <div class="checkout">
-    <a href="#">update</a>
+  <div style="display: block ruby;text-align: end;">
+    <div class="checkout">
+      <a href="{% url 'core:Home-Page' %}">Continue Shopping</a>
+    </div>
+    <div class="checkout">
+      <a href="#">check out</a>
+    </div>
   </div>
-  <div class="checkout">
-    <a href="#">check out</a>
+
+  {% else %}
+
+  <h3 class="head">Empty<span>Cart</span></h3>
+  <div class="checkout" style="text-align: center;">
+    <a href="{% url 'core:Home-Page' %}">Continue Shopping</a>
   </div>
+  {% endif %}
+
+
 </div>
 <!-- end of cart items details  -->
+
 
     {% endblock content %}
