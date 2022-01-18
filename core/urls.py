@@ -18,5 +18,7 @@ urlpatterns = [
     path("reduce_quantity_item/<int:pk>",
          remove_single_item_from_cart, name="reduce-quantity-item"),
     path('checkout/', Checkout, name='checkout'),
+    path('payment/', PaymentView.as_view(), name='payment'),
+
 
 ]
