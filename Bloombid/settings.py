@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'core',
     'Accounts',
+    'django_countries',
 ]
 
 MIDDLEWARE = [

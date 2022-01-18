@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block csslink %}
+
+<link rel="stylesheet" href={% static 'css/payment.css' %}/>
+
+  
+{% endblock csslink %}
+
+
+
+{% block content %}
+  
+  
+  
+
+    <!-- header section ends -->
+
+  <div class="container" style="  background: url({% static 'images/home-bg.jpg' %});">
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col" style="margin-top: 2px;">
+            <h3 class="title">billing address</h3>
+
+            <div class="inputBox">
+              <span>full name :</span>
+              {{Form.name}}
+            </div>
+
+            <div class="inputBox">
+              <span>email :</span>
+              {{Form.email}}
+
+            </div>
+            
+            <div class="inputBox">
+              <span>city :</span>
+              {{Form.city}}
+            </div>
+
+            <div class="flex">
+              <div class="inputBox">
+                <span>state :</span>
+                {{Form.state}}
+
+              </div>
+              <div class="inputBox">
+                <span>zip code :</span>
+                {{Form.zip}}
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <h3 class="title">payment</h3>
+
+            <div class="inputBox">
+              <span>cards accepted :</span>
+              <img src="{% static 'images/card_img.png' %}" alt="" />
+            </div>
+            
+
+            <div class="inputBox">
+              <span>address :</span>
+              {{Form.address}}
+
+            </div>
+
+
+            <div class="inputBox">
+              <span>Country</span>
+              
+             {{Form.country}} 
+
+            </div>
+          </div>
+        </div>
+        
+        <input type="submit" value="Make Payment" class="submit-btn" />
+      </form>
+    </div>
+
+
+{% endblock content %}
+

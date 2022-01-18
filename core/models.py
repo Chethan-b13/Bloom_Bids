@@ -3,6 +3,7 @@ from django.shortcuts import reverse
 from django.conf import settings
 from django.contrib.auth.models import User
 from PIL import Image
+from django_countries.fields import CountryField
 # Create your models here.
 
 label_choices = (
@@ -25,6 +26,29 @@ label_choices = (
 #     def __str__(self):
 #         """Unicode representation of UserInfo."""
 #         return self.user.username
+
+
+class UserAddress(models.Model):
+    """Model definition for UserAddress."""
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50, default="")
+    email = models.EmailField(max_length=254, null=True)
+    address = models.CharField(max_length=75)
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
+    zip = models.CharField(max_length=50)
+
+    country = CountryField(multiple=False)
+
+    class Meta:
+        """Meta definition for UserAddress."""
+
+        verbose_name = 'UserAddress'
+        verbose_name_plural = 'UserAddresss'
+
+    def __str__(self):
+        """Unicode representation of UserAddress."""
+        return self.user.username
 
 
 class Category(models.Model):
@@ -114,6 +138,8 @@ class CartItem(models.Model):
     item = models.ManyToManyField(Order)
     start_date = models.DateTimeField(auto_now_add=True)
     order_date = models.DateTimeField()
+    order_address = models.ForeignKey(
+        UserAddress, on_delete=models.SET_NULL, blank=True, null=True)
     ordered = models.BooleanField(default=False)
 
     class Meta:
@@ -143,3 +169,14 @@ class CartItem(models.Model):
         for order_item in self.item.all():
             total += order_item.get_final_price()
         return total
+
+
+class Payment(models.Model):
+    stripe_id = models.CharField(max_length=50)
+    user = models.ForeignKey(User,
+                             on_delete=models.SET_NULL, blank=True, null=True)
+    amount = models.FloatField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username

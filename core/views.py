@@ -1,13 +1,14 @@
+
+from email.headerregistry import Address
 from django.utils import timezone
-from urllib import request
-from webbrowser import get
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import ListView, DetailView, View
-from .models import Item, Order, CartItem
+from .models import Item, Order, CartItem, UserAddress
+from .forms import AddressForm
 # Create your views here.
 
 
@@ -122,3 +123,37 @@ def remove_single_item_from_cart(request, pk):
     else:
         messages.success(request, "You do not have an Order")
         return redirect("core:order-summary")
+
+
+def Checkout(request):
+    if request.method == "POST":
+        form = AddressForm(request.POST or None)
+        order = CartItem.objects.get(user=request.user, ordered=False)
+
+        if form.is_valid():
+            Customer_name = form.cleaned_data.get('name')
+            aprt_address = form.cleaned_data.get('address')
+            Customer_country = form.cleaned_data.get('country')
+            Customer_zip = form.cleaned_data.get('zip')
+            Customer_email = form.cleaned_data.get('email')
+            Customer_city = form.cleaned_data.get('city')
+            Customer_state = form.cleaned_data.get('state')
+
+            address = UserAddress(
+                user=request.user,
+                email=Customer_email,
+                city=Customer_city,
+                state=Customer_state,
+                address=aprt_address,
+                name=Customer_name,
+                country=Customer_country,
+                zip=Customer_zip
+            )
+            address.save()
+            order.address = address
+            order.save()
+            return redirect('core:checkout')
+    else:
+        adress_form = AddressForm()
+
+        return render(request, 'checkout.html', {'Form': AddressForm})
