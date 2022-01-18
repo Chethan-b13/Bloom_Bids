@@ -17,28 +17,46 @@
         <h3>sign<span>U</span>p</h3>
       </div>
       <center>
-          <form id="form1" action="" method="">
+          <form id="form1" action="/accounts/signup/" method="post">
+            {% csrf_token %}
           <div class="table">
             <table>
+
+              <tr>
+                <td>
+                  <label for="Name">Username*</label>
+                  </td>
+                  <td>
+                  <input type="text" name="username" id="username" class="box" required />
+                </td>
+              </tr>
               <!-- row 1 -->
-                      <tr>
+                      <!-- <tr>
                         <td>
                           <label for="MobileNumber">MobileNumber*</label>
                           </td>
                           <td>
                           <input type="text" name="MobileNumber" id="MobileNumber" class="box" pattern="[0-9]{10}" required/>
                         </td>
-                      </tr>
+                      </tr> -->
                     
                       <!-- row2 -->
+                      
                       <tr>
                         <td>
-                          <label for="Name">Name*</label>
+                          <label for="FName">First Name*</label>
                           </td>
                           <td>
-                          <input type="text" name="Name" id="Name" class="box" required />
+                          <input type="text" name="FName" id="FName" class="box" required />
                         </td>
                       </tr>
+                      <tr>
+                        <td>
+                          <label for="LName">Last Name*</label>
+                          </td>
+                          <td>
+                          <input type="text" name="LName" id="LName" class="box" required />
+                        </td>
                       </tr>
                       <!-- row3 -->
                       <tr>
@@ -46,18 +64,18 @@
                           <label for="Email Id">Email Id*</label>
                           </td>
                           <td>
-                          <input type="Email Id" name="Email Id" id="Email Id" class="box" required/>
+                          <input type="Email Id" name="Email_Id" id="Email Id" class="box" required/>
                         </td>
                       </tr>
-                      </tr>
+                      
                       <!-- row4 -->
-                      <tr>
+                      <!-- <tr>
                         <td>
                           <label for="Pincode">Pincode*</label></td>
                           <td>
                           <input type="tel" name="Pincode" id="Pincode" class="box" pattern="[0-9]{6,10}" required/>
                         </td>
-                      </tr>
+                      </tr> -->
                       </tr>
                       <!-- row5 -->
                       <tr>
@@ -83,13 +101,16 @@
                       </td>
                       </tr>
             </table>
+            <input type="submit" class="btn" value="Signup">
+            <!-- <a href="#" type="Submit" class="btn"><label>SignUp</label></a> -->
+                <a href="#" class="btn"><label>Cancel</label></a>
           </div>
-                <a href="#" class="btn"><label>SignUp</label></a>
-                <a href="#" class="btn"><label>Cancle</label></a>
+          </form>
+                
                   
                   <div class="login">
                     <br>
-                    <p>Already a Member?<a href="login.html">Login now</a></p>
+                    <p>Already a Member?<a href="{% url 'Accounts:Login' %}">Login now</a></p>
                   </div>
             
           </div>

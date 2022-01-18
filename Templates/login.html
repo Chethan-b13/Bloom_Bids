@@ -1,26 +1,28 @@
-
-
+{% extends 'base.html' %}
+{% load static %}
 {% block csslink %}
 <link rel="stylesheet" href={% static 'css/login.css' %}/>
-
 {% endblock csslink %}
   
 
+{% block content %}
+  
     <!-- login -->
     <center>
-      <div class="container">
+      <div class="container" style="background-image:url('{% static 'images/home-bg.jpg' %}');">
         <div class="loginheading">
           <h3>L<span>o</span>gin</h3>
         </div>
-        <form action="">
+        <form action="" method="post">
+          {% csrf_token %}
           <div class="table">
             <table border="1px">
               <tr>
                 <td>
-                  <label for="email">Email Id</label>
+                  <label for="username">Username</label>
                 </td>
                 <td>
-                  <input type="email" name="email" id="email" required />
+                  <input type="text" name="username" id="username" required />
                 </td>
               </tr>
               <tr>
@@ -41,11 +43,12 @@
               </tr>
             </table>
           </div>
+          <input type="submit" class="btn" value="Signup">
 
-          <a href="#" class="btn"><label>Login</label></a>
+          <!-- <a href="#" class="btn"><label>Login</label></a> -->
         </form>
         <div class="noacc">
-          <p>Don't have an account? <a href="signup1.html">Sign Up</a></p>
+          <p>Don't have an account? <a href="{% url 'Accounts:Signup' %}">Sign Up</a></p>
         </div>
         <div class="socialmedia">
           <h4>Login with social media</h4>
@@ -57,47 +60,9 @@
         </div>
       </div>
     </center>
-    <!-- login ends 
-    .
-   .
-  .
- . -->
+    
+  
 
-    <!-- footer section starts -->
-    <section class="footer">
-      <div class="box-container">
-        <div class="box">
-          <h3>quick links</h3>
-          <a href="#">home</a>
-          <a href="#">about</a>
-          <a href="#">products</a>
-          <a href="#">review</a>
-          <a href="#">contact</a>
-        </div>
-        <div class="box">
-          <h3>extra links</h3>
-          <a href="#">my account</a>
-          <a href="#">my order</a>
-          <a href="#">my favorite</a>
-        </div>
-        <div class="box">
-          <h3>locations</h3>
-          <a href="#">india</a>
-          <a href="#">USA</a>
-          <a href="#">japan</a>
-          <a href="#">france</a>
-        </div>
-        <div class="box">
-          <h3>contact info</h3>
-          <a href="#">+123-456-7890</a>
-          <a href="#">example@gmail.com</a>
-          <a href="#">banglore, india -560060</a>
-          <img src="./images/payment.png" alt="" />
-        </div>
-      </div>
 
-      <div class="credit">all rights reserved&copy;</div>
-    </section>
-    <!-- footer section ends -->
-  </body>
-</html>
+{% endblock content %}
+

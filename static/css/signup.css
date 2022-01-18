@@ -41,6 +41,10 @@ td label {
   font-size: 17px;
 }
 
+tr td input {
+  text-align: center;
+}
+
 tr td {
   letter-spacing: 0.5px;
   font-size: 14px;
