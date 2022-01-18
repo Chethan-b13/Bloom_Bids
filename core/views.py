@@ -1,4 +1,4 @@
-from time import timezone
+from django.utils import timezone
 from urllib import request
 from webbrowser import get
 from django.contrib import messages

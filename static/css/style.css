@@ -507,6 +507,13 @@ header .fa-bars {
     display: block;
     border: 0.1rem solid rgba(0, 0, 0, 0.1);
   }
+  #login {
+    padding: 1.5rem;
+    margin: 1.5rem;
+    background-color: #fff;
+    display: block;
+    border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  }
   .home .content h3 {
     font-size: 5rem;
   }

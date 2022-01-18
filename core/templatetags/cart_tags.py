@@ -10,5 +10,7 @@ def cart_item_count(user):
         items = CartItem.objects.filter(user=user, ordered=False)
         if items.exists():
             return items[0].item.count()
+        else:
+            return 0
     else:
         return 0
