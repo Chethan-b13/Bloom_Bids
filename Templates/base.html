@@ -36,7 +36,12 @@
         <a href="{% url 'core:Home-Page' %}">home</a>
         <a href="#about">about</a>
         <a href="#products">products</a>
+        {% if request.user.is_superuser %}
+        <a href="/admin/core/item/add/">Add Product</a>
+
+        {% else %}
         <a href="#review">review</a>
+        {% endif %}
         <a href="#contact">contact</a>
       </nav>
       <div class="icons">
@@ -53,15 +58,13 @@
         {% endif %}
           
       </div>
+      
+
     </header>
-    <!-- header section ends -->
- 
-
-
-    
-    
+    <!-- header section ends -->    
 
     {% block content %}
+
       
     {% endblock content %}
 
@@ -74,8 +77,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="{% static 'js/main.js' %}"></script>
 
-  
-      
+    {% if messages %}
+    {% for message in messages %}
+
+          <script>
+            alert('{{ message }}');
+        </script>
+
+    {% endfor %}
+  {% endif %}
+    
 
   </body>
 </html>

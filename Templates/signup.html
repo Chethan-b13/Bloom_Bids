@@ -17,14 +17,7 @@
   <div class="container" style="background-image:url('{% static 'images/home-bg.jpg' %}');">
       <div class="signupheading">
         <!-- Printing alert messages -->
-{% if messages %}
-{% for message in messages %}
-    <div class={{message.tags}} id="messages">
-      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-      <h3>{{message}}</h3>
-    </div> 
-{% endfor %}
-{% endif %}
+
 <!-- end of messages -->
         <h3>sign<span>U</span>p</h3>
       </div>

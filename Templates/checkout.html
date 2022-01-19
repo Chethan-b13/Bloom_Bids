@@ -19,7 +19,13 @@
     <!-- header section ends -->
 
   <div class="container" style="  background: url({% static 'images/home-bg.jpg' %});">
+
+    
       <form action="" method="post">
+
+        <div style="text-align: center; color:red; font-size:18px">
+
+        </div>
         {% csrf_token %}
         <div class="row">
           <div class="col" style="margin-top: 2px;">
@@ -33,6 +39,12 @@
             <div class="inputBox">
               <span>email :</span>
               {{Form.email}}
+
+            </div>
+
+            <div class="inputBox">
+              <span>address :</span>
+              {{Form.address}}
 
             </div>
             
@@ -64,19 +76,42 @@
             </div>
             
 
+            
             <div class="inputBox">
-              <span>address :</span>
-              {{Form.address}}
+              <span>Name on Card:</span>
+              {{Form.Name_on_card}}
 
             </div>
 
 
             <div class="inputBox">
-              <span>Country</span>
+              <span>Card no</span>
               
-             {{Form.country}} 
+             {{Form.Card_no}} 
 
             </div>
+
+            <div class="inputBox">
+              <span>Cvv</span>
+              
+             {{Form.cvv}} 
+
+            </div>
+
+
+            <div class="flex">
+              <div class="inputBox">
+                <span>Exp date:</span>
+                {{Form.exp_month}}
+
+              </div>
+              <div class="inputBox">
+                <span>Exp Year</span>
+                {{Form.exp_year}}
+
+              </div>
+            </div>
+
           </div>
         </div>
         

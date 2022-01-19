@@ -62,13 +62,15 @@
 .container form .row .col .inputBox input {
   width: 100%;
   border: 1px solid #ccc;
+  /* border: 1px solid #e84393; */
   padding: 10px 15px;
   font-size: 15px;
   text-transform: none;
+  /* border-radius: 2rem; */
 }
 
 .container form .row .col .inputBox input:focus {
-  border: 1px solid #000;
+  border: 1px solid #333;
 }
 
 .container form .row .col .flex {

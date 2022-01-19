@@ -16,14 +16,7 @@
       <div class="container" style="background-image:url('{% static 'images/home-bg.jpg' %}');">
 
         <div class="loginheading">
-          {% if messages %}
-          {% for message in messages %}
-              <div class={{message.tags}} id="messages">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                <h3>{{message}}</h3>
-              </div> 
-          {% endfor %}
-          {% endif %}
+
           <h3>L<span>o</span>gin</h3>
 
         </div>

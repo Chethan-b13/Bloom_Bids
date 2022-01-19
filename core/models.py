@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.shortcuts import reverse
 from django.conf import settings
@@ -38,6 +39,14 @@ class UserAddress(models.Model):
     state = models.CharField(max_length=50)
     zip = models.CharField(max_length=50)
 
+
+# 'Name_on_card', 'Card_no', 'cvv', 'exp_date'
+    Name_on_card = models.CharField(max_length=50, null=True)
+    Card_no = models.CharField(max_length=20, null=True)
+    cvv = models.CharField(max_length=3, null=True)
+
+    exp_month = models.CharField(max_length=2, null=True)
+    exp_year = models.CharField(max_length=4, null=True)
     country = CountryField(multiple=False)
 
     class Meta:
@@ -138,7 +147,7 @@ class CartItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     item = models.ManyToManyField(Order)
     start_date = models.DateTimeField(auto_now_add=True)
-    order_date = models.DateTimeField()
+    order_date = models.DateTimeField(null=True)
     order_address = models.ForeignKey(
         UserAddress, on_delete=models.SET_NULL, blank=True, null=True)
     ordered = models.BooleanField(default=False)
@@ -170,14 +179,3 @@ class CartItem(models.Model):
         for order_item in self.item.all():
             total += order_item.get_final_price()
         return total
-
-
-class Payment(models.Model):
-    stripe_id = models.CharField(max_length=50)
-    user = models.ForeignKey(User,
-                             on_delete=models.SET_NULL, blank=True, null=True)
-    amount = models.FloatField()
-    timestamp = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.user.username

@@ -14,17 +14,6 @@
 
 <div class="small-container cart-page">
 
-  <!-- Printing alert messages -->
-  {% if messages %}
-  {% for message in messages %}
-      <div class={{message.tags}} id="messages">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        <h3>{{message}}</h3>
-      </div> 
-  {% endfor %}
-{% endif %}
-<!-- end of messages -->
-
 
 {% if cart_items.item.all %}
   <h3 class="head">Shopping <span>Cart</span></h3>

@@ -40,6 +40,9 @@ def Login(request):
         user = authenticate(username=user_name, password=pass_word)
         if user is not None:
             login(request, user)
+            messages.info(
+                request, f'Hello {user.username} Welcome to Blush&Bloom')
+
             return redirect('core:Home-Page')
         else:
             messages.info(request, "Invalid Credentials")
@@ -52,4 +55,5 @@ def Login(request):
 def Logout(request):
     # if request.method == 'POST':
     logout(request)
+    messages.info(request, "See you Soon")
     return redirect('core:Home-Page')

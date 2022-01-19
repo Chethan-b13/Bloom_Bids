@@ -24,6 +24,10 @@
   text-align: right;
 }
 
+.info {
+  font-size: large;
+}
+
 .checkout {
   text-align: right;
   /* transition: 0.3s; */

@@ -15,14 +15,7 @@
     <!-- fav -->
     <div class="container">
       <div class="favheading">
-        {% if messages %}
-        {% for message in messages %}
-            <div class={{message.tags}} id="messages">
-              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-              <h3>{{message}}</h3>
-            </div> 
-        {% endfor %}
-        {% endif %}
+
 
         {% if items %}
 
