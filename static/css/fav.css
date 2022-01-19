@@ -1,0 +1,99 @@
+:root {
+  --pink: #e84393;
+}
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  outline: none;
+  text-decoration: none;
+  border: none;
+  text-transform: capitalize;
+  transition: 0.2s linear;
+}
+.checkout a {
+  display: inline-block;
+  background-color: var(--pink);
+  font-size: 1.7rem;
+  /* border-radius: 2rem; */
+  color: #fff;
+  padding: 0.9rem 1.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.checkout {
+  text-align: right;
+  /* transition: 0.3s; */
+}
+.checkout:hover a {
+  font-size: 1.9rem;
+  transition-delay: 0.1s;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  overflow-x: hidden;
+}
+
+.favheading {
+  padding-top: 80px;
+  text-align: center;
+}
+.favheading h3 {
+  font-size: 3rem;
+  color: #666;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+.favheading h3 span {
+  color: var(--pink);
+}
+.favheading h3 i {
+  color: var(--pink);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  max-width: 60%;
+  margin: 0% auto;
+}
+th {
+  text-align: left;
+  padding: 10px;
+  color: #666;
+  font-weight: normal;
+  font-size: 2rem;
+  background-color: rgba(255, 51, 153, 0.05);
+}
+table tr {
+  border-bottom: 1px solid #666;
+}
+.img {
+}
+th {
+  text-align: center;
+  padding: 10px;
+  color: #666;
+  font-weight: normal;
+  font-size: 2rem;
+  background-color: rgba(255, 51, 153, 0.05);
+}
+td {
+  text-align: center;
+  padding: 10px 5px;
+  font-size: 1.8rem;
+}
+td a {
+  color: var(--pink);
+  font-size: 1.5rem;
+}
+td img {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}

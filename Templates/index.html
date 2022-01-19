@@ -7,13 +7,14 @@
 <section class="home" id="home" style="background-image:url('{% static 'images/home-bg.jpg' %}');">
     <div class="contents">
       <h3>Fresh Flowers</h3>
-      <span>Natural & Beautiful Flowers</span>
+      <!-- <span>Natural & Beautiful Flowers</span> -->
+      <span>Save upto 40%</span>
+
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime
-        cumque necessitatibus vitae pariatur. Non eos provident quae rerum ex
-        eveniet.
+        All you need is to select a Flower on our site.
+        Blush & Bloom will ensure the highest quality and timely delivery to your loved ones.
       </p>
-      <a href="#" class="btn">shop now</a>
+      <a href="#products" class="btn">shop now</a>
     </div>
 </section>
   <!-- home section ends -->
@@ -29,15 +30,10 @@
       <div class="content">
         <h3>why choose us?</h3>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis,
-          deleniti animi distinctio quisquam ullam quod quas omnis quae
-          explicabo dolorem cum perspiciatis molestiae laborum quos totam
-          iusto magnam ut obcaecati?
+          We provide a marketplace for flowers for growers and buyers. We have proudly been doing this for over 16 years. We bring supply and demand together, for an optimal price and the lowest transaction costs, offer a wide range of services, and work intensively together with new and existing partners in the horticultural sector. 
         </p>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
-          cupiditate necessitatibus. Officia ut nisi fugit odio cupiditate
-          omnis repudiandae quia?
+          That is how we supply the world with fresh flowers for 365 days. Together we are Growing strong! That is the notion upon which International Flower Auction Bangalore Ltd is based. Growers come together to the same place to sell their products. Together, they are stronger in the face of traders and get a better price for their flowers.
         </p>
         <a href="#" class="btn">learn more</a>
       </div>
@@ -92,11 +88,11 @@
         {% endif %}
           
         <div class="image">
-          <a href="{{Flower.get_absolute_url}}"><img src=/media/{{Flower.item_image}} alt="{{Flower.flower_name}}"/></a>
+          <a href="{{Flower.get_absolute_url}}" style="max-width: 85%;"><img src=/media/{{Flower.item_image}} alt="{{Flower.flower_name}}"/></a>
           <div class="icons">
-            <a href="#" class="fas fa-heart"></a>
+            <a href="{% url 'core:add-to-wishlist' Flower.id %}" class="fas fa-heart"></a>
             <a href="{{Flower.get_add_to_cart_url}}" class="cart-btn">add to cart</a>
-            <a href="#" class="fas fa-share"></a>
+            <a href="{{Flower.get_absolute_url}}" class="fas fa-share"></a>
           </div>
         </div>
         <div class="content">

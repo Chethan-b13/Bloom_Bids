@@ -9,7 +9,14 @@
 
 {% block content %}
 
-<!-- Printing alert messages -->
+
+  
+
+    <!-- sign up -->
+
+  <div class="container" style="background-image:url('{% static 'images/home-bg.jpg' %}');">
+      <div class="signupheading">
+        <!-- Printing alert messages -->
 {% if messages %}
 {% for message in messages %}
     <div class={{message.tags}} id="messages">
@@ -19,12 +26,6 @@
 {% endfor %}
 {% endif %}
 <!-- end of messages -->
-  
-
-    <!-- sign up -->
-
-  <div class="container" style="background-image:url('{% static 'images/home-bg.jpg' %}');">
-      <div class="signupheading">
         <h3>sign<span>U</span>p</h3>
       </div>
       <center>
@@ -114,7 +115,7 @@
             </table>
             <input type="submit" class="btn" value="Signup">
             <!-- <a href="#" type="Submit" class="btn"><label>SignUp</label></a> -->
-                <a href="{% url 'core:Home-page' %}" class="btn"><label>Cancel</label></a>
+                <a href="{% url 'core:Home-Page' %}" class="btn"><label>Cancel</label></a>
           </div>
           </form>
                 

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block csslink %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/fav.css' %}" />
+  
+{% endblock csslink %}
+  
+
+
+{% block content %}
+    <!-- fav -->
+    <div class="container">
+      <div class="favheading">
+        {% if messages %}
+        {% for message in messages %}
+            <div class={{message.tags}} id="messages">
+              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+              <h3>{{message}}</h3>
+            </div> 
+        {% endfor %}
+        {% endif %}
+
+        {% if items %}
+
+        <h3><span>Wish </span> List <i class="fas fa-heart"></i></h3>
+      </div>
+      
+
+      <table>
+        <tr>
+          <th>Product</th>
+          <th>Product Details</th>
+          <th>Stock status</th>
+        </tr>
+        
+          
+        
+          
+        {% for item in items %}
+          
+          
+        <tr>
+          <td>
+            <div class="img"><img src="{{item.item.item_image.url}}" alt="" /></div>
+          </td>
+          <td>
+            <div class="data">
+              <p>{{item.item.flower_name}}</p>
+              <small>{{item.item.discount_price}}</small>
+              <br />
+              <a href="{% url 'core:add-to-cart' item.item.id %}">Add to Cart</a>
+              <br />
+              <a href="{% url 'core:remove-from-wishlist' item.item.id %}">Remove</a>
+            </div>
+          </td>
+          <td>
+            <p>{{item.label}}</p>
+          </td>
+        </tr>
+
+        {% endfor %}
+
+      </table>
+      {% else %}
+        <h3 class="head">Empty<span>wishlist</span></h3>
+        <div class="checkout" style="text-align: center;">
+          <a href="{% url 'core:Home-Page' %}">Continue Shopping</a>
+        </div>
+  {% endif %}
+    </div>
+
+{% endblock content %}
+    

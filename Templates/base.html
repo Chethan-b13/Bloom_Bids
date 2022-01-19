@@ -31,7 +31,7 @@
     <header>
       <input type="checkbox" id="toggler" />
       <label for="toggler" class="fas fa-bars"></label>
-      <a href="#" class="logo">flower<span>.</span></a>
+      <a href="#" class="logo">Blush & Bloom<span>.</span></a>
       <nav class="navbar">
         <a href="{% url 'core:Home-Page' %}">home</a>
         <a href="#about">about</a>
@@ -40,7 +40,7 @@
         <a href="#contact">contact</a>
       </nav>
       <div class="icons">
-        <a href="#" class="fas fa-heart"></a>
+        <a href="{% url 'core:wishlist' %}" class="fas fa-heart"></a>
       
         <a href="{% url 'core:order-summary' %}" class="fas fa-shopping-cart"
         ><span style=" color: #f496a9; font-size: large;">{{request.user | cart_item_count }}</span></a>
@@ -55,6 +55,8 @@
       </div>
     </header>
     <!-- header section ends -->
+ 
+
 
     
     

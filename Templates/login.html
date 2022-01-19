@@ -8,21 +8,24 @@
 {% block content %}
 
 <!-- Printing alert messages -->
-{% if messages %}
-{% for message in messages %}
-    <div class={{message.tags}} id="messages">
-      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-      <h3>{{message}}</h3>
-    </div> 
-{% endfor %}
-{% endif %}
+
 <!-- end of messages -->
   
     <!-- login -->
     <center>
       <div class="container" style="background-image:url('{% static 'images/home-bg.jpg' %}');">
+
         <div class="loginheading">
+          {% if messages %}
+          {% for message in messages %}
+              <div class={{message.tags}} id="messages">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <h3>{{message}}</h3>
+              </div> 
+          {% endfor %}
+          {% endif %}
           <h3>L<span>o</span>gin</h3>
+
         </div>
         <form action="{% url 'Accounts:Login' %}" method="post">
           {% csrf_token %}
@@ -62,7 +65,7 @@
           <p style="margin-top: 19px;">Don't have an account? <a href="{% url 'Accounts:Signup' %}">Sign Up</a></p>
         </div>
         <div class="socialmedia">
-          <h4>Login with social media</h4>
+          <!-- <h4>Login with social media</h4> -->
           <div class="icons">
             <a href=""> <i class="bi bi-twitter"></i></a>
             <a href=""><i class="bi bi-facebook"></i></a>
