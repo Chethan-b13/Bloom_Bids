@@ -95,7 +95,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'BlushandBloom',
         'USER': 'root',
-        'PASSWORD': 'Chethan@123',
+        'PASSWORD': os.environ['DBPASS'],
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -158,5 +158,7 @@ AUTHENTICATION_BACKENDS = (
 )
 SITE_ID = 1
 
+
+LOGIN_URL = '/accounts/login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'

@@ -23,12 +23,12 @@ class ProductDetailView(LoginRequiredMixin, DetailView):
     template_name = "Product_detail.html"
 
 
-@login_required(login_url='/login/')
+@login_required
 def OrderSummary(request):
     cart_items, created = CartItem.objects.get_or_create(
         user=request.user, ordered=False)
     context = {'cart_items': cart_items}
-    print(cart_items)
+
     return render(request, 'cart.html', context)
 
 
@@ -80,8 +80,8 @@ def remove_from_cart(request, pk):
                                               item=item,
                                               ordered=False)[0]
             order_item.delete()
-            messages.success(request, "Item \"" +
-                             order_item.item.flower_name+"\" removed from your cart")
+            messages.success(
+                request, f'Item {order_item.item.flower_name} removed from your cart')
             return redirect("core:order-summary")
         else:
             messages.success(request, "This Item not in your cart")
@@ -218,3 +218,8 @@ def Wishlist(request):
         user=request.user, ordered=False, wishlist=True)
     context = {'items': cart_items}
     return render(request, 'wishlist.html', context)
+
+
+def Contact(request):
+    messages.info(request, "We will get back to you soon")
+    return redirect('core:Home-Page')

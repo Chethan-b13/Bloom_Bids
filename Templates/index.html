@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
+
+
+{% block title %}
+<title>Blush&Bloom</title>
+
+{% endblock title %}
+  
+
 {% block content %}
     
 
@@ -33,7 +41,7 @@
           We provide a marketplace for flowers for growers and buyers. We have proudly been doing this for over 16 years. We bring supply and demand together, for an optimal price and the lowest transaction costs, offer a wide range of services, and work intensively together with new and existing partners in the horticultural sector. 
         </p>
         <p>
-          That is how we supply the world with fresh flowers for 365 days. Together we are Growing strong! That is the notion upon which International Flower Auction Bangalore Ltd is based. Growers come together to the same place to sell their products. Together, they are stronger in the face of traders and get a better price for their flowers.
+          That is how we supply the world with fresh flowers for 365 days. Together we are Growing strong! Growers come together to the same place to sell their products. Together, they are stronger in the face of traders and get a better price for their flowers.
         </p>
         <a href="#" class="btn">learn more</a>
       </div>
@@ -97,7 +105,7 @@
         </div>
         <div class="content">
           <h3>{{Flower.flower_name}}</h3>
-          <div class="price">{{Flower.discount_price}}<span>{{Flower.price}}</span></div>
+          <div class="price">&#8377;{{Flower.discount_price}}<span>&#8377;{{Flower.price}}</span></div>
         </div>
       </div>
       {% endfor %}
@@ -194,7 +202,7 @@
       <form action="">
         <input type="text" placeholder="name" class="box" />
         <input type="email" placeholder="email" class="box" />
-        <input type="tel" placeholder="number" class="box" />
+        <input type="text" placeholder="number" class="box" />
         <textarea
           name=""
           class="box"
@@ -203,7 +211,7 @@
           cols="30"
           rows="10"
         ></textarea>
-        <input type="submit" value="send message" class="btn" />
+        <a href="{% url 'core:contact' %}"><input type="button" value="send message" class="btn" /></a>
       </form>
       <div class="image">
         <img src={% static '/images/contact-img.svg' %} alt="" />

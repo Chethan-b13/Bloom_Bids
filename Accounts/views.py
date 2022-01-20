@@ -15,7 +15,6 @@ def Signup(request):
         last_name = request.POST['LName']
         email = request.POST['Email_Id']
         pass_word = request.POST['Password']
-        print(pass_word)
         if User.objects.filter(username=username).exists():
             messages.info(request, 'User with Username Already Exists')
             return redirect('Accounts:Signup')
@@ -35,13 +34,12 @@ def Login(request):
     if request.method == "POST":
         user_name = request.POST['username']
         pass_word = request.POST['password']
-        print(user_name)
-        print(pass_word)
+
         user = authenticate(username=user_name, password=pass_word)
         if user is not None:
             login(request, user)
             messages.info(
-                request, f'Hello {user.username} Welcome to Blush&Bloom')
+                request, f'Hello {user.username} Welcome to Blush And Bloom')
 
             return redirect('core:Home-Page')
         else:

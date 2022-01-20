@@ -290,12 +290,13 @@ header .fa-bars {
   color: #333;
 }
 .products .box-container .box .content .price {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: var(--pink);
   font-weight: bolder;
   padding-top: 1rem;
 }
 .products .box-container .box .content .price span {
+  margin-left: 10px;
   font-size: 1.5rem;
   color: #999;
   font-weight: lighter;

@@ -19,7 +19,7 @@ urlpatterns = [
          remove_single_item_from_cart, name="reduce-quantity-item"),
     path('checkout/', Checkout, name='checkout'),
     path('wishlist/', Wishlist, name='wishlist'),
-
+    path('contact/', Contact, name='contact'),
     path('add-to-wishlist/<int:pk>', Add_to_Wishlist, name="add-to-wishlist"),
     path('remove-from-wishlist/<int:pk>',
          remove_from_Wishlist, name="remove-from-wishlist"),
